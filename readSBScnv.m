@@ -123,18 +123,24 @@ while ~strncmp(tline, '*END*', 5)
     nheader = nheader+1;
 end
 
+% add an empty field if no user headers
+if ~isfield( s, 'userheaders')
+    s.userheaders = [];
+end
+
 % reorder the fields
 fieldorder = {'source', 'DataFileType', 'SeasaveVersion',...
     'instrumentheaders', 'userheaders', 'softwareheaders',...
     'vars', 'longname', 'units', 'span'};
-% find the current field names
-fnames = fieldnames(s); 
-% make sure the list contains what is already in there
-for ff = 1:length( fnames )
-    fieldmatch(ff) = strmatch( fnames{ff}, fieldorder, 'exact');
-end
-% order the fields
-s = orderfields(s, fieldorder(fieldmatch));
+% % find the current field names
+% fnames = fieldnames(s); 
+% % make sure the list contains what is already in there
+% for ff = 1:length( fnames )
+%     fieldmatch(ff) = strmatch( fnames{ff}, fieldorder, 'exact');
+% end
+% % order the fields
+% s = orderfields(s, fieldorder(fieldmatch));
+s = orderfields( s, fieldorder ); 
 
 
 % make a script to normalize the variable names to matlab readable

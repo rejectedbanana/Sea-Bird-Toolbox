@@ -864,19 +864,19 @@ switch sbs_var
         kvar_units = 'sbeoxtv1';
     % RAW OXYGEN TEMPERATURE, SBE 63
     case  'sbeoxTC'
-        kvar_name = '';
+        kvar_name = 'sbeoxTC';
         kvar_format = '%f';
         kvar_units = 'ITS-90, deg C';
     case  'sbeoxTF'
-        kvar_name = '';
+        kvar_name = 'sbeoxTF';
         kvar_format = '%f';
         kvar_units = 'ITS-90, deg F';
     case  'sbeoxTC1'
-        kvar_name = '';
+        kvar_name = 'sbeoxTC1';
         kvar_format = '%f';
         kvar_units = 'ITS-90, deg C';
     case  'sbeoxTF1'
-        kvar_name = '';
+        kvar_name = 'sbeoxTF1';
         kvar_format = '%f';
         kvar_units = 'ITS-90, deg F';
     % DERIVED OXYGEN, SBE 63

@@ -123,15 +123,21 @@ while ~strncmp(tline, '*END*', 5)
     nheader = nheader+1;
 end
 
-% add an empty field if no user headers
-if ~isfield( s, 'userheaders')
-    s.userheaders = [];
-end
+% % add an empty field if no user headers
+% if ~isfield( s, 'userheaders')
+%     s.userheaders = [];
+% end
 
 % reorder the fields
 fieldorder = {'source', 'DataFileType', 'SeasaveVersion',...
     'instrumentheaders', 'userheaders', 'softwareheaders',...
     'vars', 'longname', 'units', 'span'};
+
+for ff = 1:length( fieldorder )
+    if ~isfield( s, fieldorder{ff} )
+        s.(fieldorder{ff}) = [];
+    end
+end
 % % find the current field names
 % fnames = fieldnames(s); 
 % % make sure the list contains what is already in there

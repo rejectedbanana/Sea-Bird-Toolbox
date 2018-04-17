@@ -480,27 +480,27 @@ switch sbs_var
     case  'sigma-é00'
         kvar_name = 'sgth0';
         kvar_format = '%f';
-        kvar_units = 'sigma-theta (p=0 db),kg/m^3';
+        kvar_units = 'sigma-theta (p=0 db), kg/m^3-1000';
     case  'sigma-t00'
         kvar_name = 'sgt0';
         kvar_format = '%f';
-        kvar_units = 'sigma-t (p=0 db), kg/m^3';
+        kvar_units = 'sigma-t (p=0 db), kg/m^3-1000';
     case  'sigma-100'
         kvar_name = 'sg10';
         kvar_format = '%f';
-        kvar_units = 'sigma-1 (p=1000 db),kg/m^3';
+        kvar_units = 'sigma-1 (p=1000 db), kg/m^3-1000';
     case  'sigma-200'
         kvar_name = 'sg20';
         kvar_format = '%f';
-        kvar_units = 'sigma-2 (p=2000 db),kg/m^3';
+        kvar_units = 'sigma-2 (p=2000 db), kg/m^3-1000';
     case  'sigma-300'
         kvar_name = 'sg30';
         kvar_format = '%f';
-        kvar_units = 'sigma-3 (p=3000 db),kg/m^3';
+        kvar_units = 'sigma-3 (p=3000 db), kg/m^3-1000';
     case  'sigma-400'
         kvar_name = 'sg40';
         kvar_format = '%f';
-        kvar_units = 'sigma-4 (p=4000 db),kg/m^3';
+        kvar_units = 'sigma-4 (p=4000 db), kg/m^3-1000';
     case  'density11'
         kvar_name = 'rho1';
         kvar_format = '%f';
@@ -508,27 +508,27 @@ switch sbs_var
     case  'sigma-é11'
         kvar_name = 'sgth1';
         kvar_format = '%f';
-        kvar_units = 'sigma-theta (p=0 db),kg/m^3';
+        kvar_units = 'sigma-theta (p=0 db), kg/m^3-1000';
     case  'sigma-t11'
         kvar_name = 'sgt1';
         kvar_format = '%f';
-        kvar_units = 'sigma-t (p=0 db), kg/m^3';
+        kvar_units = 'sigma-t (p=0 db), kg/m^3-1000';
     case  'sigma-111'
         kvar_name = 'sg11';
         kvar_format = '%f';
-        kvar_units = 'sigma-1 (p=1000 db),kg/m^3';
+        kvar_units = 'sigma-1 (p=1000 db), kg/m^3-1000';
     case  'sigma-211'
         kvar_name = 'sg21';
         kvar_format = '%f';
-        kvar_units = 'sigma-2 (p=2000 db),kg/m^3';
+        kvar_units = 'sigma-2 (p=2000 db), kg/m^3-1000';
     case  'sigma-311'
         kvar_name = 'sg31';
         kvar_format = '%f';
-        kvar_units = 'sigma-3 (p=3000 db),kg/m^3';
+        kvar_units = 'sigma-3 (p=3000 db), kg/m^3-1000';
     case  'sigma-411'
         kvar_name = 'sg41';
         kvar_format = '%f';
-        kvar_units = 'sigma-4 (p=4000 db),kg/m^3';
+        kvar_units = 'sigma-4 (p=4000 db), kg/m^3-1000';
     
     % DENSITY DIFFERENCE
     case  {'D2-D1, d'}
@@ -546,19 +546,19 @@ switch sbs_var
     case  'D2-D1,1'
         kvar_name = 'sg1diff';
         kvar_format = '%f';
-        kvar_units = 'sigma-1 (p=1000 db),kg/m^3';
+        kvar_units = 'sigma-1 (p=1000 db), kg/m^3';
     case  'D2-D1,2'
         kvar_name = 'sg2diff';
         kvar_format = '%f';
-        kvar_units = 'sigma-2 (p=1000 db),kg/m^3';
+        kvar_units = 'sigma-2 (p=1000 db), kg/m^3';
     case  'D2-D1,3'
         kvar_name = 'sg3diff';
         kvar_format = '%f';
-        kvar_units = 'sigma-3 (p=1000 db),kg/m^3';
+        kvar_units = 'sigma-3 (p=1000 db), kg/m^3';
     case  'D2-D1,4'
         kvar_name = 'sg4diff';
         kvar_format = '%f';
-        kvar_units = 'sigma-4 (p=1000 db),kg/m^3';
+        kvar_units = 'sigma-4 (p=1000 db), kg/m^3';
 
     % SOUND VELOCITY
     % primary sensor

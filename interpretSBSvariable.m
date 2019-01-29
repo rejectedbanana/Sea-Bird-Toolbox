@@ -454,18 +454,22 @@ switch sbs_var
         kvar_name = 'tha168F';
         kvar_format = '%f';
         kvar_units = 'ITS-68, deg F';
+    case  'pta090C'
+        kvar_name = 'pta090C';
+        kvar_format = '%f';
+        kvar_units = 'ITS-90, deg C';
         
     % SALINITY
     case  'sal00'
-        kvar_name = 's0';
+        kvar_name = 'psal0';
         kvar_format = '%f';
         kvar_units = 'PSU';
     case  'sal11'
-        kvar_name = 's1';
+        kvar_name = 'psal1';
         kvar_format = '%f';
         kvar_units = 'PSU';
     case  'secS-priS'
-        kvar_name = 'sdiff';
+        kvar_name = 'psaldiff';
         kvar_format = '%f';
         kvar_units = 'PSU';
         

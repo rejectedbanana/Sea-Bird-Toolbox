@@ -31,6 +31,25 @@ function [s] = readSBScnv( target_file )
 % Sea-Bird Scientific 
 % kmartini@seabird.com
 
+% add the filename
+s.source = target_file;
+
+% if the target points to a URL, copy it locally then read it from
+% there....
+if strcmp( target_file(1:8), 'https://' ) || strcmp( target_file(1:7), 'http://' )
+    filename = strsplit( target_file, '/'); 
+    filename = filename{end}; 
+    % grab the file
+    local_file = websave( filename, target_file ); 
+    % redefine the target file to be the local file
+    target_file = local_file; 
+    % note that the file has been downloaded from a url
+    url_download = 1; 
+else
+    url_download = 0; 
+end
+    
+
 % prestart some counters
 blankcounter = 0; 
  
@@ -39,9 +58,6 @@ fid = fopen( target_file );
 % start reading the header lines
 tline = fgetl(fid);
 nheader = 1;
-
-% add the filename
-s.source = target_file;
 
 % go through the header line by line because the output varies with each
 % instrument
@@ -223,3 +239,8 @@ end
     
 % CLOSE THE FILE!
 fclose( fid );
+
+% delete the local file if copied from a url
+if url_download == 1
+    eval( ['delete ', target_file ]); 
+end

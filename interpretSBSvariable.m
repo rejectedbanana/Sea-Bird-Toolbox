@@ -1490,7 +1490,7 @@ switch sbs_var
         kvar_name = sbs_var;
         % find and replace all the characters that are not alphabetic,
         % numbers or underscores with underscores
-        noninds = regexp( dumstr, '\W');
+        noninds = regexp( kvar_name, '\W');
         kvar_name(noninds) = '_'; 
         disp( ['Assigning ', sbs_var, ' as ', kvar_name])
         kvar_format = '%f';

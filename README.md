@@ -34,3 +34,6 @@ The "Cell Thermal Mass..." module
 
 ### sbe43oxygen.m
 Calculates the oxygen concentration from oxygen voltage, temperature, salinity, pressure and the calibration coefficients exactly as Sea-Bird Data Processing or SeaSave would do.
+
+### sbeO2sol.m
+Calculated oxygen solubility in seawater, which you need to calculate concentration.

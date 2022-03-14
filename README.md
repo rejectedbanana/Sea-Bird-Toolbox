@@ -13,7 +13,7 @@ kmartini@seabird.com
 ### readSBScnv.m
 A script that pulls the majority of information in the header and all the data columns and puts them into a compact matlab structure. This includes the user input headers, variable names, variable spans, variable units, and the file modification list found at the end of the header. Uses interpretSBSvariable.m to determine the variable names which was painstakingly copied from the [Sea-Bird Data Processing Manual](http://www.seabird.com/sites/default/files/documents/SBEDataProcessing_7.26.7.pdf) by hand. This script has been tested on .cnvs output from SBE 911, 16, 19, 49, 25, 37, and 39 instruments. 
 
-### readSBScnv.m
+### readSBScal.m
 A script that reads a .cal file and puts them in to a ,cal structure. 
 
 ### sbsStructure2NetCDF.m

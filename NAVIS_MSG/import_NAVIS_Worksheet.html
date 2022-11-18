@@ -1,0 +1,202 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+   <!--
+This HTML was auto-generated from MATLAB code.
+To make changes, update the MATLAB code and republish this document.
+      --><title>Load data from a Sea-Bird Navis Autonomous Float into MATLAB</title><meta name="generator" content="MATLAB 8.0"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2017-07-07"><meta name="DC.source" content="import_NAVIS_Worksheet.m"><style type="text/css">
+html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td{margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}:focus{outine:0}ins{text-decoration:none}del{text-decoration:line-through}table{border-collapse:collapse;border-spacing:0}
+
+html { min-height:100%; margin-bottom:1px; }
+html body { height:100%; margin:0px; font-family:Arial, Helvetica, sans-serif; font-size:10px; color:#000; line-height:140%; background:#fff none; overflow-y:scroll; }
+html body td { vertical-align:top; text-align:left; }
+
+h1 { padding:0px; margin:0px 0px 25px; font-family:Arial, Helvetica, sans-serif; font-size:1.5em; color:#d55000; line-height:100%; font-weight:normal; }
+h2 { padding:0px; margin:0px 0px 8px; font-family:Arial, Helvetica, sans-serif; font-size:1.2em; color:#000; font-weight:bold; line-height:140%; border-bottom:1px solid #d6d4d4; display:block; }
+h3 { padding:0px; margin:0px 0px 5px; font-family:Arial, Helvetica, sans-serif; font-size:1.1em; color:#000; font-weight:bold; line-height:140%; }
+
+a { color:#005fce; text-decoration:none; }
+a:hover { color:#005fce; text-decoration:underline; }
+a:visited { color:#004aa0; text-decoration:none; }
+
+p { padding:0px; margin:0px 0px 20px; }
+img { padding:0px; margin:0px 0px 20px; border:none; }
+p img, pre img, tt img, li img { margin-bottom:0px; } 
+
+ul { padding:0px; margin:0px 0px 20px 23px; list-style:square; }
+ul li { padding:0px; margin:0px 0px 7px 0px; }
+ul li ul { padding:5px 0px 0px; margin:0px 0px 7px 23px; }
+ul li ol li { list-style:decimal; }
+ol { padding:0px; margin:0px 0px 20px 0px; list-style:decimal; }
+ol li { padding:0px; margin:0px 0px 7px 23px; list-style-type:decimal; }
+ol li ol { padding:5px 0px 0px; margin:0px 0px 7px 0px; }
+ol li ol li { list-style-type:lower-alpha; }
+ol li ul { padding-top:7px; }
+ol li ul li { list-style:square; }
+
+.content { font-size:1.2em; line-height:140%; padding: 20px; }
+
+pre, tt, code { font-size:12px; }
+pre { margin:0px 0px 20px; }
+pre.error { color:red; }
+pre.codeinput { padding:10px; border:1px solid #d3d3d3; background:#f7f7f7; }
+pre.codeoutput { padding:10px 11px; margin:0px 0px 20px; color:#4c4c4c; }
+
+@media print { pre.codeinput, pre.codeoutput { word-wrap:break-word; width:100%; } }
+
+span.keyword { color:#0000FF }
+span.comment { color:#228B22 }
+span.string { color:#A020F0 }
+span.untermstring { color:#B20000 }
+span.syscmd { color:#B28C00 }
+
+.footer { width:auto; padding:10px 0px; margin:25px 0px 0px; border-top:1px dotted #878787; font-size:0.8em; line-height:140%; font-style:italic; color:#878787; text-align:left; float:none; }
+.footer p { margin:0px; }
+.footer a { color:#878787; }
+.footer a:hover { color:#878787; text-decoration:underline; }
+.footer a:visited { color:#878787; }
+
+table th { padding:7px 5px; text-align:left; vertical-align:middle; border: 1px solid #d6d4d4; font-weight:bold; }
+table td { padding:7px 5px; text-align:left; vertical-align:top; border:1px solid #d6d4d4; }
+
+
+
+
+
+  </style></head><body><div class="content"><h1>Load data from a Sea-Bird Navis Autonomous Float into MATLAB</h1><!--introduction--><p>This script imports the data contained in the .msg files that are transmitted from the NAVIS float to the server. This includes the engineering and scientific data, including when the float is in parked, discrete and profiling modes.</p><p>KiM MARTiNi 06.2017 <a href="mailto:kmartini@seabird.com">kmartini@seabird.com</a></p><p>DISCLAIMER: Software is provided as is.</p><!--/introduction--><h2>Contents</h2><div><ul><li><a href="#1">DEFINE THE FLOAT, SCIENTIFIC PAYLOAD AND DATA PATH</a></li><li><a href="#4">LOAD THE DATA</a></li><li><a href="#5">LIST OF SENSOR NAMES</a></li></ul></div><h2>DEFINE THE FLOAT, SCIENTIFIC PAYLOAD AND DATA PATH<a name="1"></a></h2><p>Import the data from Float 0676. The scientific payload must be defined for each float in order to interpret the hexadecimal data string. In this case, NAVIS float 0676 has a scientific payload consists of a SBE 41cp CTD, SBE 63 Optical Oxygen Sensor and a MCOMS 3-channel optical Fluorometer, Backscatter and FDOM sensor.</p><p>For a list of possible sensor names, type "help NavisSensor2vars" into the command line.</p><pre class="codeinput"><span class="comment">% F0676 (Navis BGCi standard)</span>
+<span class="comment">% float #</span>
+floatid = <span class="string">'0676'</span>;
+<span class="comment">% Define the scientific payload.</span>
+payload = {<span class="string">'sbe41cp'</span>, <span class="string">'sbe63'</span>, <span class="string">'mcoms'</span>}; <span class="comment">% BGCi float</span>
+<span class="comment">% define the folder where the .msg files are stored</span>
+target_dir = <span class="string">'C:\NAVIS\data\0810'</span>;
+</pre><p>Example of a "vanilla" NAVIS float where the .msg file only contains data from a SBE 41cp CTD.</p><pre class="codeinput"><span class="comment">% F0810 (Navis BGCi standard)</span>
+<span class="comment">% float #</span>
+floatid = <span class="string">'0810'</span>;
+<span class="comment">% Define the scientific payload.</span>
+payload = {<span class="string">'sbe41cp'</span>}; <span class="comment">% vanilla float</span>
+<span class="comment">% define the folder where the .msg files are stored</span>
+target_dir = <span class="string">'C:\NAVIS\data\0810'</span>;
+</pre><h2>LOAD THE DATA<a name="4"></a></h2><pre class="codeinput"><span class="comment">% find all the .msg files in the encapsulating folder</span>
+[msg] = findextension(target_dir, <span class="string">'.msg'</span>);
+
+<span class="comment">% clear the variables</span>
+clear <span class="string">s</span>
+close <span class="string">all</span>
+
+<span class="comment">% ______\\</span>
+<span class="comment">% cycle through the message files</span>
+<span class="keyword">for</span> aa = 1:length(msg)
+    filename = strsplit( msg(aa).name, <span class="string">'.'</span>);
+    <span class="keyword">if</span> ~strcmp(filename, <span class="string">'000'</span>) &amp; length( filename) == 3
+
+        <span class="comment">% define the target filems</span>
+        target_file = fullfile( target_dir, msg(aa).name);
+
+        <span class="comment">% define the profile number</span>
+        pnum = str2num( filename{2} );
+
+        <span class="comment">% load the data</span>
+        [s(pnum).header, s(pnum).park, s(pnum).discrete, s(pnum).dat, s(pnum).footer] = loadNavisMSGfile( target_file, payload );
+    <span class="keyword">end</span>
+<span class="keyword">end</span>
+</pre><h2>LIST OF SENSOR NAMES<a name="5"></a></h2><p>For reference, a list of possible sensor names that have been deployed on Nacis float variants.   LIST OF POSSIBLE INPUT SENSORS:         'sbe41cp'         'sbe63'         'sbe63flip'         'FlBbCd'         'FlNtuBB2'         'FlBBBB2'         'BB1BB2BB3'         'mcoms'         'pH'         'CRover'         'CRV'         'tiltAzi'         'tilt2'         'tilt'         'OCR'         'PAR1'         'PAR2'         'OCRR'         'OCRI'</p><p class="footer"><br><a href="http://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2012b</a><br></p></div><!--
+##### SOURCE BEGIN #####
+%% Load data from a Sea-Bird Navis Autonomous Float into MATLAB   
+% This script imports the data contained in the .msg files that are
+% transmitted from the NAVIS float to the server. This includes the
+% engineering and scientific data, including when the float is in parked,
+% discrete and profiling modes. 
+%
+% KiM MARTiNi 06.2017
+% kmartini@seabird.com 
+%
+% DISCLAIMER: Software is provided as is.
+
+%% DEFINE THE FLOAT, SCIENTIFIC PAYLOAD AND DATA PATH
+
+%%
+% Import the data from Float 0676. The scientific payload must be defined
+% for each float in order to interpret the hexadecimal data string. 
+% In this case, NAVIS float 0676 has a scientific payload consists of
+% a SBE 41cp CTD, SBE 63 Optical Oxygen Sensor and a MCOMS 3-channel
+% optical Fluorometer, Backscatter and FDOM sensor. 
+%
+% For a list of possible sensor names, type "help NavisSensor2vars" into
+% the command line.
+
+% F0676 (Navis BGCi standard)
+% float #
+floatid = '0676';
+% Define the scientific payload.
+payload = {'sbe41cp', 'sbe63', 'mcoms'}; % BGCi float
+% define the folder where the .msg files are stored
+target_dir = 'C:\NAVIS\data\0810'; 
+
+%% 
+% Example of a "vanilla" NAVIS float where the .msg file only contains data from a SBE 41cp CTD.
+
+% F0810 (Navis BGCi standard)
+% float #
+floatid = '0810';
+% Define the scientific payload.
+payload = {'sbe41cp'}; % vanilla float
+% define the folder where the .msg files are stored
+target_dir = 'C:\NAVIS\data\0810'; 
+
+%% LOAD THE DATA
+% 
+
+% find all the .msg files in the encapsulating folder
+[msg] = findextension(target_dir, '.msg'); 
+
+% clear the variables
+clear s
+close all
+
+% ______\\
+% cycle through the message files 
+for aa = 1:length(msg)
+    filename = strsplit( msg(aa).name, '.');
+    if ~strcmp(filename, '000') & length( filename) == 3
+        
+        % define the target filems
+        target_file = fullfile( target_dir, msg(aa).name);
+        
+        % define the profile number
+        pnum = str2num( filename{2} );
+        
+        % load the data
+        [s(pnum).header, s(pnum).park, s(pnum).discrete, s(pnum).dat, s(pnum).footer] = loadNavisMSGfile( target_file, payload );
+    end
+end
+
+%% LIST OF SENSOR NAMES
+% For reference, a list of possible sensor names that have been deployed on
+% Nacis float variants.
+%   LIST OF POSSIBLE INPUT SENSORS:
+%         'sbe41cp'
+%         'sbe63'
+%         'sbe63flip'
+%         'FlBbCd'
+%         'FlNtuBB2'
+%         'FlBBBB2'
+%         'BB1BB2BB3'
+%         'mcoms'
+%         'pH'
+%         'CRover'
+%         'CRV'
+%         'tiltAzi'
+%         'tilt2'
+%         'tilt'
+%         'OCR'
+%         'PAR1'
+%         'PAR2'
+%         'OCRR'
+%         'OCRI'
+
+
+##### SOURCE END #####
+--></body></html>

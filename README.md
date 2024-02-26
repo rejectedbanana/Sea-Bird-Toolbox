@@ -1,12 +1,11 @@
 # Sea Bird Toolbox
+## THIS TOOLBOX IS NO LONGER MAINTAINED! But you can always reach me at kmartini@tiniscientific.com
 
 A collection of scripts I have developed for Matlab to process data from Sea-Bird Scientific oceanographic sensors, instruments and floats.
 
 The software is provided as is and is not officially supported by Sea-Bird Scientific. It is my own personal collection of scripts. If you find an issues, bugs or improvements please contact me! 
 
-KiM MARTiNi 08.2017
-kmartini@seabird.com
-
+KiM MARTiNi 02.2024 
 
 ## CTD_CNV - FUNCTIONS FOR IMPORTING AND EXPORTING
 
